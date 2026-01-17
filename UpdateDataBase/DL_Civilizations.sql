@@ -1274,7 +1274,116 @@ insert or replace into ModifierArguments (ModifierId, Name, Value) values
 	('TRAIT_ADJUST_CITY_CENTER_BUILDINGS_PRODUCTION', 	'DistrictType', 'DISTRICT_CITY_CENTER'),
 	('TRAIT_ADJUST_CITY_CENTER_BUILDINGS_PRODUCTION', 	'Amount', 100);
 
--- update ModifierArguments set Value = 2 where ModifierId = 'TRAIT_GOLD_FROM_DOMESTIC_TRADING_POSTS' and Name = 'Amount';
+-- Rome UA: All Roads Lead to Rome (重做)
+-- 移除旧的+1金币modifier
+delete from TraitModifiers where TraitType = 'TRAIT_CIVILIZATION_ALL_ROADS_TO_ROME' and ModifierId = 'TRAIT_GOLD_FROM_DOMESTIC_TRADING_POSTS';
+
+-- 添加贸易路线容量modifier（需要requirement检测非首都城市）
+insert or replace into TraitModifiers (TraitType, ModifierId) values
+	('TRAIT_CIVILIZATION_ALL_ROADS_TO_ROME', 'HD_ROME_CITY_TRADE_ROUTE_CAPACITY');
+
+insert or replace into Modifiers (ModifierId, ModifierType, SubjectRequirementSetId) values
+	('HD_ROME_CITY_TRADE_ROUTE_CAPACITY', 'MODIFIER_PLAYER_CITIES_ADJUST_TRADE_ROUTE_CAPACITY', 'HD_ROME_NON_CAPITAL_CITY_REQUIREMENTS');
+
+insert or replace into ModifierArguments (ModifierId, Name, Value) values
+	('HD_ROME_CITY_TRADE_ROUTE_CAPACITY', 'Amount', 1);
+
+-- 创建requirement set：非首都城市
+insert or ignore into RequirementSets (RequirementSetId, RequirementSetType) values
+	('HD_ROME_NON_CAPITAL_CITY_REQUIREMENTS', 'REQUIREMENTSET_TEST_ALL');
+
+insert or ignore into RequirementSetRequirements (RequirementSetId, RequirementId) values
+	('HD_ROME_NON_CAPITAL_CITY_REQUIREMENTS', 'REQUIRES_CITY_NON_CAPITAL');
+
+-- 功能3和4：让所有国内贸易路线额外获得终点城市作为国际目的地时的产出
+-- 参考天坛的实现方式，使用MODIFIER_SINGLE_CITY_ADJUST_TRADE_ROUTE_YIELD_TO_OTHERS
+-- 为每个有国际目的地产出的区域创建修饰符，让国内贸易路线额外获得这些产出
+
+-- 为每个有国际目的地产出的区域创建修饰符
+insert or replace into DistrictModifiers (DistrictType, ModifierId)
+select DistrictType, 'HD_ROME_' || DistrictType || '_' || YieldType || '_INTERNATIONAL_TO_DOMESTIC'
+from District_TradeRouteYields
+where YieldChangeAsInternationalDestination != 0;
+
+-- 创建修饰符，使用SubjectRequirementSetId限制只有罗马文明才生效
+insert or replace into Modifiers (ModifierId, ModifierType, SubjectRequirementSetId)
+select 'HD_ROME_' || DistrictType || '_' || YieldType || '_INTERNATIONAL_TO_DOMESTIC',
+    'MODIFIER_SINGLE_CITY_ADJUST_TRADE_ROUTE_YIELD_TO_OTHERS',
+    'HD_ROME_PLAYER_REQUIREMENTS'
+from District_TradeRouteYields
+where YieldChangeAsInternationalDestination != 0;
+
+-- 设置修饰符参数：产出类型
+insert or replace into ModifierArguments (ModifierId, Name, Value)
+select 'HD_ROME_' || DistrictType || '_' || YieldType || '_INTERNATIONAL_TO_DOMESTIC', 'YieldType', YieldType
+from District_TradeRouteYields
+where YieldChangeAsInternationalDestination != 0;
+
+-- 设置修饰符参数：产出数量（使用国际目的地的产出值）
+insert or replace into ModifierArguments (ModifierId, Name, Value)
+select 'HD_ROME_' || DistrictType || '_' || YieldType || '_INTERNATIONAL_TO_DOMESTIC', 'Amount', YieldChangeAsInternationalDestination
+from District_TradeRouteYields
+where YieldChangeAsInternationalDestination != 0;
+
+-- 设置修饰符参数：只影响国内贸易路线
+insert or replace into ModifierArguments (ModifierId, Name, Value)
+select 'HD_ROME_' || DistrictType || '_' || YieldType || '_INTERNATIONAL_TO_DOMESTIC', 'Domestic', 1
+from District_TradeRouteYields
+where YieldChangeAsInternationalDestination != 0;
+
+-- 创建需求集：检测玩家是否是罗马文明
+-- 使用DL_Requirements.sql中自动生成的PLAYER_IS_CIVILIZATION_ROME requirement
+insert or ignore into RequirementSets (RequirementSetId, RequirementSetType) values
+	('HD_ROME_PLAYER_REQUIREMENTS', 'REQUIREMENTSET_TEST_ALL');
+
+-- 创建需求：检测玩家是否是罗马文明（PLAYER_IS_CIVILIZATION_ROME应在DL_Requirements.sql中已创建）
+insert or ignore into RequirementSetRequirements (RequirementSetId, RequirementId) values
+	('HD_ROME_PLAYER_REQUIREMENTS', 'PLAYER_IS_CIVILIZATION_ROME');
+
+-- 为天坛翻倍兼容：如果罗马玩家拥有天坛，额外添加一次产出（实现翻倍效果）
+-- 为每个有国际目的地产出的区域创建额外的修饰符（用于天坛翻倍）
+insert or replace into DistrictModifiers (DistrictType, ModifierId)
+select DistrictType, 'HD_ROME_' || DistrictType || '_' || YieldType || '_INTERNATIONAL_TO_DOMESTIC_TEMPLE'
+from District_TradeRouteYields
+where YieldChangeAsInternationalDestination != 0;
+
+-- 创建修饰符，要求同时是罗马文明且拥有天坛
+insert or replace into Modifiers (ModifierId, ModifierType, SubjectRequirementSetId)
+select 'HD_ROME_' || DistrictType || '_' || YieldType || '_INTERNATIONAL_TO_DOMESTIC_TEMPLE',
+    'MODIFIER_SINGLE_CITY_ADJUST_TRADE_ROUTE_YIELD_TO_OTHERS',
+    'HD_ROME_WITH_TEMPLE_OF_HEAVEN_REQUIREMENTS'
+from District_TradeRouteYields
+where YieldChangeAsInternationalDestination != 0;
+
+-- 设置修饰符参数：产出类型
+insert or replace into ModifierArguments (ModifierId, Name, Value)
+select 'HD_ROME_' || DistrictType || '_' || YieldType || '_INTERNATIONAL_TO_DOMESTIC_TEMPLE', 'YieldType', YieldType
+from District_TradeRouteYields
+where YieldChangeAsInternationalDestination != 0;
+
+-- 设置修饰符参数：产出数量（使用国际目的地的产出值）
+insert or replace into ModifierArguments (ModifierId, Name, Value)
+select 'HD_ROME_' || DistrictType || '_' || YieldType || '_INTERNATIONAL_TO_DOMESTIC_TEMPLE', 'Amount', YieldChangeAsInternationalDestination
+from District_TradeRouteYields
+where YieldChangeAsInternationalDestination != 0;
+
+-- 设置修饰符参数：只影响国内贸易路线
+insert or replace into ModifierArguments (ModifierId, Name, Value)
+select 'HD_ROME_' || DistrictType || '_' || YieldType || '_INTERNATIONAL_TO_DOMESTIC_TEMPLE', 'Domestic', 1
+from District_TradeRouteYields
+where YieldChangeAsInternationalDestination != 0;
+
+-- 创建需求集：检测玩家是否是罗马文明且拥有天坛
+insert or ignore into RequirementSets (RequirementSetId, RequirementSetType) values
+	('HD_ROME_WITH_TEMPLE_OF_HEAVEN_REQUIREMENTS', 'REQUIREMENTSET_TEST_ALL');
+
+-- 创建需求：要求玩家是罗马文明
+insert or ignore into RequirementSetRequirements (RequirementSetId, RequirementId) values
+	('HD_ROME_WITH_TEMPLE_OF_HEAVEN_REQUIREMENTS', 'PLAYER_IS_CIVILIZATION_ROME');
+
+-- 创建需求：要求玩家拥有天坛（使用天坛文件中已创建的requirement）
+insert or ignore into RequirementSetRequirements (RequirementSetId, RequirementId) values
+	('HD_ROME_WITH_TEMPLE_OF_HEAVEN_REQUIREMENTS', 'PLAYER_HAS_TEMPLE_OF_HEAVEN_REQUIREMENTS');
 
 ---------------------------------------------------------------------------------------------------------------------------
 -- Ethiopia

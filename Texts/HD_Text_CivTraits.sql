@@ -420,7 +420,7 @@ values
 -- =====================================================================================================================================
 -- 罗马
 -- =====================================================================================================================================
-	("LOC_TRAIT_CIVILIZATION_ALL_ROADS_TO_ROME_DESCRIPTION",                 "All cities you found or conquer start with a Trading Post. If in [ICON_TradeRoute] Trade Route range of your [ICON_Capital] Capital, they also start with a road to it. Your domestic [ICON_TradeRoute] Trade Routes earn extra +1 [ICON_Gold] Gold for passing through Trading Posts in your own cities."),
+	("LOC_TRAIT_CIVILIZATION_ALL_ROADS_TO_ROME_DESCRIPTION",                 "All cities you found or conquer start with a Trading Post and provide +1 [ICON_TradeRoute] Trade Route capacity. If in [ICON_TradeRoute] Trade Route range of your [ICON_Capital] Capital, they also start with a road to it. Domestic [ICON_TradeRoute] Trade Routes gain additional yields equal to what the destination city would provide as an international trade destination."),
 	-- 图拉真
 	("LOC_TRAIT_LEADER_TRAJANS_COLUMN_NAME",                                 "Trajan's Forum"),
 	("LOC_TRAIT_LEADER_TRAJANS_COLUMN_DESCRIPTION",                          "All cities start with a Monument building. +100% construction speed towads builings in City Center. The construction of the Government Plaza district and buildings in it can be done immediately."),
@@ -1034,7 +1034,7 @@ values
 -- =====================================================================================================================================
 -- 罗马
 -- =====================================================================================================================================
-	("zh_Hans_CN",  "LOC_TRAIT_CIVILIZATION_ALL_ROADS_TO_ROME_DESCRIPTION",          "所有您创建或攻占的城市一开始便拥有贸易站。如果位于您 [ICON_Capital] 首都的 [ICON_TradeRoute] 贸易路线范围内，城市自动建立一条通至罗马的路。您的国内 [ICON_TradeRoute] 贸易路线经过您的城市贸易站时额外+1 [ICON_Gold] 金币。"),
+	("zh_Hans_CN",  "LOC_TRAIT_CIVILIZATION_ALL_ROADS_TO_ROME_DESCRIPTION",          "所有您创建或攻占的城市一开始便拥有贸易站，非首都城市提供+1 [ICON_TradeRoute] 贸易路线容量。如果位于您 [ICON_Capital] 首都的 [ICON_TradeRoute] 贸易路线范围内，城市自动建立一条通至罗马的路。国内 [ICON_TradeRoute] 贸易路线额外获得终点城市作为国际目的地时的产出。"),
 	-- 图拉真
 	("zh_Hans_CN",  "LOC_TRAIT_LEADER_TRAJANS_COLUMN_NAME",                          "图拉真广场"),
 	("zh_Hans_CN",  "LOC_TRAIT_LEADER_TRAJANS_COLUMN_DESCRIPTION",                   "所有城市建立时赠送纪念碑。建造市中心建筑时+100%建造速度。建造市政广场和其中的建筑时可以立刻完成。"),

@@ -356,7 +356,7 @@
 			<Text>罗马建立城市时会获得市中心最便宜的建筑。（从远古时代开始游戏则是纪念碑）。</Text>
 		</Replace>
 		<Replace Tag="LOC_TRAIT_CIVILIZATION_ALL_ROADS_TO_ROME_DESCRIPTION" Language="zh_Hans_CN">
-			<Text>您创建或攻占的城市将自动建立您的贸易站，如果该城市位于您 [ICON_Capital] 首都的 [ICON_TradeRoute] 贸易路线范围内，还将自动建立一条通至首都的路。您的 [ICON_TradeRoute] 贸易路线经过您的贸易站+1 [ICON_Gold] 金币（无论他们是否在国境外）。</Text>
+			<Text>所有您创建或攻占的城市一开始便拥有贸易站，非首都城市提供+1 [ICON_TradeRoute] 贸易路线容量。如果位于您 [ICON_Capital] 首都的 [ICON_TradeRoute] 贸易路线范围内，城市自动建立一条通至罗马的路。国内 [ICON_TradeRoute] 贸易路线额外获得终点城市作为国际目的地时的产出。</Text>
 		</Replace>
 		<Replace Tag="LOC_PROMOTION_CLASS_AIR_FIGHTER_NAME" Language="zh_Hans_CN">
 			<Text>战斗机</Text>

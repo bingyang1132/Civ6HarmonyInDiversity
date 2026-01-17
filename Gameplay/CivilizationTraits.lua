@@ -4003,6 +4003,37 @@ function Bannockburn_CustomEvent_OnChooseSelection(playerId, param)
 end
 GameEvents.HD_CustomEvent_OnChooseSelection.Add(Bannockburn_CustomEvent_OnChooseSelection);
 
+-- =====================================================================================================================================
+-- 罗马
+-- =====================================================================================================================================
+
+-- 罗马UD: 建造水渠时立即完成
+function RomeAqueductProductionChanged(playerId, cityId, productionId, objectId)
+	if not CivilizationHasTrait(playerId, 'TRAIT_CIVILIZATION_ALL_ROADS_TO_ROME') then
+		return;
+	end
+	
+	local player = Players[playerId];
+	if not player then return; end
+	
+	local city = player:GetCities():FindID(cityId);
+	if city == nil then return; end
+	
+	local current = city:GetBuildQueue():CurrentlyBuilding();
+	if current then
+		local districtInfo = GameInfo.Districts[current];
+		
+		if districtInfo ~= nil then
+			-- 检查是否是水渠或浴场（罗马的替代水渠）
+			if districtInfo.DistrictType == 'DISTRICT_AQUEDUCT' or districtInfo.DistrictType == 'DISTRICT_BATH' then
+				print("[罗马UA] 检测到建造水渠/浴场，立即完成: 城市=" .. city:GetName() .. ", 区域=" .. districtInfo.DistrictType);
+				city:GetBuildQueue():FinishProgress();
+			end
+		end
+	end
+end
+Events.CityProductionChanged.Add(RomeAqueductProductionChanged);
+
 --------------------------------------------------------------
 -- Initialize
 function initialize()
