@@ -59,7 +59,8 @@ values
     ("LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_INDUSTRIALIST_DESCRIPTION",         "+5 [ICON_FOOD] Food and [ICON_PRODUCTION] Production to cities within 9 tiles. The bonuses are doubled after progressing 'Civil Service' Civic."),
 --    ("LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_INDUSTRIALIST_DESCRIPTION",         "Government Plaza in this city provides +1 [ICON_Food] Food, +1 [ICON_Production] Production, +1 [ICON_Science] Science and +1 [ICON_Culture] Culture to all cities within 8 tiles of the Government Plaza. This bonus is doubled for each building in the Government Plaza."),
 --    ("LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_INDUSTRIALIST_VIETNAM_DESCRIPTION", "Government Plaza in this city provides +1 [ICON_Food] Food and +1 [ICON_Production] Production to all cities within 8 tiles of the Government Plaza. Diplomatic Quater in this city provides +1 [ICON_Science] Science and +1 [ICON_Culture] Culture to all cities within 8 tiles of the Diplomatic Quater. These bonuses is doubled for each building in the corresponding district."),
-    ("LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_VERTICAL_INTEGRATION_DESCRIPTION",  "The city receives corresponding yields from districts within 6 tiles of other cities."),
+    ("LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_VERTICAL_INTEGRATION_DESCRIPTION",  "The city receives corresponding yields from districts within 9 tiles. The bonuses are doubled after progressing 'Civil Service' Civic."),
+    ("LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_EXPEDITION_DESCRIPTION",            "Settlers trained in this city do not consume [ICON_CITIZEN] Population and gain +2 [ICON_Movement] Movement."),
     -- Liang
     ("LOC_GOVERNOR_PROMOTION_AQUACULTURE_NAME",                                   "Rural Planning"),
     ("LOC_GOVERNOR_PROMOTION_ZONING_COMMISSIONER_NAME",                           "Architecture Master"),
@@ -199,7 +200,7 @@ values
 --    ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_INDUSTRIALIST_DESCRIPTION",         "就职的城市中的市政广场为市政广场8个单元格内的城市提供+1 [ICON_Food] 食物、+1 [ICON_Production] 生产力、+1 [ICON_Science] 科技值和+1 [ICON_Culture] 文化值。市政广场中每有一个建筑，该加成便翻一次倍。"),
 --    ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_INDUSTRIALIST_VIETNAM_DESCRIPTION", "就职的城市中的市政广场为市政广场8个单元格内的城市提供+1 [ICON_Food] 食物和+1 [ICON_Production] 生产力。外交区为外交区8个单元格内的城市提供 +1 [ICON_Science] 科技值和+1 [ICON_Culture] 文化值。这些区域中每有一个建筑，该区域提供的加成便翻一次倍。"),
     ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_VERTICAL_INTEGRATION_NAME", 		 "纵向一体化"),
-    ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_VERTICAL_INTEGRATION_DESCRIPTION",  "本城从6环内来自其他城市的区域获得对应产出。"),
+    ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_VERTICAL_INTEGRATION_DESCRIPTION",  "本城从9环内的区域获得对应产出。解锁“行政部门”市政后效果翻倍。"),
     ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_EXPEDITION_DESCRIPTION",            "本城生产的开拓者不消耗 [ICON_CITIZEN] 人口，并获得+2 [ICON_Movement] 移动力。"),
     -- 梁
     ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_AQUACULTURE_NAME",                                   "乡村规划"),

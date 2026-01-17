@@ -166,12 +166,13 @@ insert or replace into ModifierArguments (ModifierId, Name, Value) select
 from DistrictCorrespondingYieldType_HD where HasAdjacency = 1;
 
 -- 马右4
+-- 基础效果：9环内区域获得对应产出（包括本城）
 insert or replace into GovernorPromotionModifiers (GovernorPromotionType, ModifierId) select
 	'GOVERNOR_PROMOTION_RESOURCE_MANAGER_VERTICAL_INTEGRATION', 'HD_VERTICAL_INTEGRATION_' || DistrictType || '_ATTACH'
 from DistrictCorrespondingYieldType_HD;
 
 insert or replace into Modifiers (ModifierId, ModifierType, SubjectRequirementSetId) select
-	'HD_VERTICAL_INTEGRATION_' || DistrictType || '_ATTACH', 'MODIFIER_PLAYER_DISTRICTS_ATTACH_MODIFIER', 'DISTRICT_IS_' || DistrictType || '_WITHIN_6_TILES_REQUIREMENTS'
+	'HD_VERTICAL_INTEGRATION_' || DistrictType || '_ATTACH', 'MODIFIER_PLAYER_DISTRICTS_ATTACH_MODIFIER', 'DISTRICT_IS_' || DistrictType || '_WITHIN_9_TILES_REQUIREMENTS'
 from DistrictCorrespondingYieldType_HD;
 
 insert or replace into ModifierArguments (ModifierId, Name, Value) select
@@ -179,7 +180,7 @@ insert or replace into ModifierArguments (ModifierId, Name, Value) select
 from DistrictCorrespondingYieldType_HD;
 
 insert or replace into Modifiers (ModifierId, ModifierType, OwnerRequirementSetId, SubjectRequirementSetId) select
-	'HD_VERTICAL_INTEGRATION_' || DistrictType, 'MODIFIER_PLAYER_CITIES_ADJUST_CITY_YIELD_CHANGE', 'CITY_HAS_NO_VERTICAL_INTEGRATION_REQUIREMENTS', 'CITY_HAS_VERTICAL_INTEGRATION_REQUIREMENTS'
+	'HD_VERTICAL_INTEGRATION_' || DistrictType, 'MODIFIER_PLAYER_CITIES_ADJUST_CITY_YIELD_CHANGE', null, 'CITY_HAS_VERTICAL_INTEGRATION_REQUIREMENTS'
 from DistrictCorrespondingYieldType_HD;
 
 insert or replace into ModifierArguments (ModifierId, Name, Value) select
@@ -188,4 +189,29 @@ from DistrictCorrespondingYieldType_HD;
 
 insert or replace into ModifierArguments (ModifierId, Name, Value) select
 	'HD_VERTICAL_INTEGRATION_' || DistrictType, 'Amount', Amount
+from DistrictCorrespondingYieldType_HD;
+
+-- 额外效果：解锁行政部门后效果翻倍
+insert or replace into GovernorPromotionModifiers (GovernorPromotionType, ModifierId) select
+	'GOVERNOR_PROMOTION_RESOURCE_MANAGER_VERTICAL_INTEGRATION', 'HD_VERTICAL_INTEGRATION_' || DistrictType || '_LATE_ATTACH'
+from DistrictCorrespondingYieldType_HD;
+
+insert or replace into Modifiers (ModifierId, ModifierType, SubjectRequirementSetId) select
+	'HD_VERTICAL_INTEGRATION_' || DistrictType || '_LATE_ATTACH', 'MODIFIER_PLAYER_DISTRICTS_ATTACH_MODIFIER', 'DISTRICT_IS_' || DistrictType || '_WITHIN_9_TILES_REQUIREMENTS'
+from DistrictCorrespondingYieldType_HD;
+
+insert or replace into ModifierArguments (ModifierId, Name, Value) select
+	'HD_VERTICAL_INTEGRATION_' || DistrictType || '_LATE_ATTACH', 'ModifierId', 'HD_VERTICAL_INTEGRATION_' || DistrictType || '_LATE'
+from DistrictCorrespondingYieldType_HD;
+
+insert or replace into Modifiers (ModifierId, ModifierType, OwnerRequirementSetId, SubjectRequirementSetId) select
+	'HD_VERTICAL_INTEGRATION_' || DistrictType || '_LATE', 'MODIFIER_PLAYER_CITIES_ADJUST_CITY_YIELD_CHANGE', 'PLAYER_HAS_CIVIC_CIVIL_SERVICE_REQUIREMENTS', 'CITY_HAS_VERTICAL_INTEGRATION_REQUIREMENTS'
+from DistrictCorrespondingYieldType_HD;
+
+insert or replace into ModifierArguments (ModifierId, Name, Value) select
+	'HD_VERTICAL_INTEGRATION_' || DistrictType || '_LATE', 'YieldType', YieldType
+from DistrictCorrespondingYieldType_HD;
+
+insert or replace into ModifierArguments (ModifierId, Name, Value) select
+	'HD_VERTICAL_INTEGRATION_' || DistrictType || '_LATE', 'Amount', Amount
 from DistrictCorrespondingYieldType_HD;

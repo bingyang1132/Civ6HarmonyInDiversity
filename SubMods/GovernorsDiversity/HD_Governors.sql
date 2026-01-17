@@ -78,7 +78,7 @@ insert or replace into Modifiers
 	(ModifierId,										ModifierType,											Permanent,	SubjectRequirementSetId)
 values
 	('MAGNUS_TRAINED_SETTLER_MOVEMENT',				'MODIFIER_SINGLE_CITY_ATTACH_MODIFIER',					0,			NULL),
-	('MAGNUS_TRAINED_SETTLER_MOVEMENT_MODIFIER',	'MODIFIER_SINGLE_CITY_GRANT_ABILITY_FOR_TRAINED_UNITS',	1,			'UNIT_IS_SETTLER_REQUIREMENTS');
+	('MAGNUS_TRAINED_SETTLER_MOVEMENT_MODIFIER',	'MODIFIER_SINGLE_CITY_GRANT_ABILITY_FOR_TRAINED_UNITS',	1,			'HD_UNIT_IS_SETTLER');
 
 insert or replace into ModifierArguments
 	(ModifierId,										Name,				Value)

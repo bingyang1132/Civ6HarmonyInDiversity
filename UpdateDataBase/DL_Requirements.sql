@@ -231,6 +231,14 @@ insert or ignore into RequirementSetRequirements (RequirementSetId, RequirementI
 insert or ignore into RequirementSetRequirements (RequirementSetId, RequirementId)
 	select 'DISTRICT_IS_' || DistrictType || '_WITHIN_6_TILES_REQUIREMENTS', 'REQUIRES_OBJECT_WITHIN_6_TILES' from Districts;
 
+-- 9环内区域
+insert or ignore into RequirementSets (RequirementSetId, RequirementSetType)
+	select 'DISTRICT_IS_' || DistrictType || '_WITHIN_9_TILES_REQUIREMENTS', 'REQUIREMENTSET_TEST_ALL' from Districts;
+insert or ignore into RequirementSetRequirements (RequirementSetId, RequirementId)
+	select 'DISTRICT_IS_' || DistrictType || '_WITHIN_9_TILES_REQUIREMENTS', 'REQUIRES_DISTRICT_IS_' || DistrictType from Districts;
+insert or ignore into RequirementSetRequirements (RequirementSetId, RequirementId)
+	select 'DISTRICT_IS_' || DistrictType || '_WITHIN_9_TILES_REQUIREMENTS', 'REQUIRES_OBJECT_WITHIN_9_TILES' from Districts;
+
 insert or ignore into RequirementArguments (RequirementId, Name, Value)
 	select 'REQUIRES_CITY_HAS_' || DistrictType || '_RAW', 'DistrictType', DistrictType from Districts;
 insert or ignore into Requirements (RequirementId, RequirementType)
