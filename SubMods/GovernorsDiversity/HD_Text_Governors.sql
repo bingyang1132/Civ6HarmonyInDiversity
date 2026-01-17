@@ -200,7 +200,7 @@ values
 --    ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_INDUSTRIALIST_VIETNAM_DESCRIPTION", "就职的城市中的市政广场为市政广场8个单元格内的城市提供+1 [ICON_Food] 食物和+1 [ICON_Production] 生产力。外交区为外交区8个单元格内的城市提供 +1 [ICON_Science] 科技值和+1 [ICON_Culture] 文化值。这些区域中每有一个建筑，该区域提供的加成便翻一次倍。"),
     ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_VERTICAL_INTEGRATION_NAME", 		 "纵向一体化"),
     ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_VERTICAL_INTEGRATION_DESCRIPTION",  "本城从6环内来自其他城市的区域获得对应产出。"),
-    ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_EXPEDITION_DESCRIPTION",            "本城生产的开拓者不消耗 [ICON_CITIZEN] 人口。"),
+    ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_RESOURCE_MANAGER_EXPEDITION_DESCRIPTION",            "本城生产的开拓者不消耗 [ICON_CITIZEN] 人口，并获得+2 [ICON_Movement] 移动力。"),
     -- 梁
     ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_AQUACULTURE_NAME",                                   "乡村规划"),
     ("zh_Hans_CN",  "LOC_GOVERNOR_PROMOTION_ZONING_COMMISSIONER_NAME",                           "建筑大师"),
