@@ -569,7 +569,7 @@ values
 -- 马普切
 -- =====================================================================================================================================
 	("LOC_TRAIT_CIVILIZATION_MAPUCHE_TOQUI_NAME",                            "People of the Earth"),
-	("LOC_TRAIT_CIVILIZATION_MAPUCHE_TOQUI_DESCRIPTION",                     "All Districts and Improved tiles adjacent to Mountain tiles provide +1 [ICON_FOOD] Food and +1 [ICON_FAITH] Faith. Gains 1 bonus [ICON_MOVEMENT] Movement if it begins a turn adjacent to Mountain tiles."),
+	("LOC_TRAIT_CIVILIZATION_MAPUCHE_TOQUI_DESCRIPTION",                     "All Districts and Improved tiles adjacent to Mountain tiles provide +1 [ICON_FOOD] Food, +1 [ICON_CULTURE] Culture, and +1 [ICON_FAITH] Faith. Gains 1 bonus [ICON_MOVEMENT] Movement if it begins a turn adjacent to Mountain tiles."),
 	("LOC_TRAIT_LEADER_LAUTARO_ABILITY_DESCRIPTION_ALT",                     "+5 [ICON_STRENGTH] Combat Strength when fighting Free Cities or civilizations that are in a Golden or Heroic Age. Cities with an Established [ICON_GOVERNOR] Governor provide +50% experience in combat towards all units trained in this city."),
 	("LOC_ABILITY_TOQUI_XP_FROM_GOVERNOR_DESCRIPTION",                       "Gains +50% experience in combat.(Swift Hawk)"),
 -- =====================================================================================================================================
@@ -1183,7 +1183,7 @@ values
 -- 马普切
 -- =====================================================================================================================================
 	("zh_Hans_CN",  "LOC_TRAIT_CIVILIZATION_MAPUCHE_TOQUI_NAME",                     "大地的子民"),
-	("zh_Hans_CN",  "LOC_TRAIT_CIVILIZATION_MAPUCHE_TOQUI_DESCRIPTION",              "所有相邻山脉单元格的区域和改良设施+1 [ICON_FOOD] 食物和+1 [ICON_FAITH] 信仰值。单位如果相邻山脉单元格开始一个回合，会获得1 [ICON_MOVEMENT] 移动力加成。"),
+	("zh_Hans_CN",  "LOC_TRAIT_CIVILIZATION_MAPUCHE_TOQUI_DESCRIPTION",              "所有相邻山脉单元格的区域和改良设施+1 [ICON_FOOD] 食物、+1 [ICON_CULTURE] 文化值和+1 [ICON_FAITH] 信仰值。单位如果相邻山脉单元格开始一个回合，会获得1 [ICON_MOVEMENT] 移动力加成。"),
 	("zh_Hans_CN",  "LOC_TRAIT_LEADER_LAUTARO_ABILITY_DESCRIPTION_ALT",              "与自由城市或处在黄金或英雄时代中的文明作战时+5 [ICON_STRENGTH] 战斗力。[ICON_GOVERNOR] 总督就职城市中生产的所有单位的战斗经验值+50%。"),
 	("zh_Hans_CN",  "LOC_ABILITY_TOQUI_XP_FROM_GOVERNOR_DESCRIPTION",                "获得的战斗经验值+50%。（迅捷之鹰）"),
 -- =====================================================================================================================================
