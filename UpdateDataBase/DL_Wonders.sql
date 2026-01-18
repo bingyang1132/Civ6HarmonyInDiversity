@@ -473,16 +473,20 @@ update Building_GreatPersonPoints set PointsPerTurn = 2 where BuildingType = 'BU
 insert or ignore into BuildingModifiers
 	(BuildingType,				ModifierId)
 values
-	('BUILDING_PANAMA_CANAL',	'PANAMA_CANAL_GRANTS_MERCHANT');
+	('BUILDING_PANAMA_CANAL',	'PANAMA_CANAL_GRANTS_MERCHANT'),
+	('BUILDING_PANAMA_CANAL',	'PANAMA_CANAL_EXTRA_GREAT_MERCHANT_POINTS');
 insert or ignore into Modifiers
 	(ModifierId,						ModifierType,												RunOnce,	Permanent)
 values
-	('PANAMA_CANAL_GRANTS_MERCHANT',	'MODIFIER_SINGLE_CITY_GRANT_GREAT_PERSON_CLASS_IN_CITY',	1,			1);
+	('PANAMA_CANAL_GRANTS_MERCHANT',	'MODIFIER_SINGLE_CITY_GRANT_GREAT_PERSON_CLASS_IN_CITY',	1,			1),
+	('PANAMA_CANAL_EXTRA_GREAT_MERCHANT_POINTS',	'MODIFIER_PLAYER_ADJUST_GREAT_PERSON_POINTS_PERCENT',	0,			0);
 insert or ignore into ModifierArguments
 	(ModifierId,						Name,						Value)
 values
 	('PANAMA_CANAL_GRANTS_MERCHANT',	'Amount',					1),
-	('PANAMA_CANAL_GRANTS_MERCHANT',	'GreatPersonClassType',		'GREAT_PERSON_CLASS_MERCHANT');
+	('PANAMA_CANAL_GRANTS_MERCHANT',	'GreatPersonClassType',		'GREAT_PERSON_CLASS_MERCHANT'),
+	('PANAMA_CANAL_EXTRA_GREAT_MERCHANT_POINTS',	'Amount',					100),
+	('PANAMA_CANAL_EXTRA_GREAT_MERCHANT_POINTS',	'GreatPersonClassType',		'GREAT_PERSON_CLASS_MERCHANT');
 
 -- Great Zimbabwe
 update Buildings set AdjacentResource = null, AdjacentImprovement = 'IMPROVEMENT_PASTURE', PrereqTech = 'TECH_ARCH_HD' where BuildingType = 'BUILDING_GREAT_ZIMBABWE';
