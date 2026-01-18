@@ -274,7 +274,7 @@ update GlobalParameters set Value = 32 where Name = 'EXPERIENCE_MAXIMUM_ONE_COMB
 update GlobalParameters set Value = 50 where Name = 'SCIENCE_VICTORY_POINTS_REQUIRED';
 
 --征兵回合数
-update GlobalParameters set Value = 15 where Name = 'LEVY_MILITARY_TURN_DURATION';
+update GlobalParameters set Value = 30 where Name = 'LEVY_MILITARY_TURN_DURATION';
 
 --征兵花费
 update GlobalParameters set Value = 60 where Name = 'LEVY_MILITARY_PERCENT_OF_UNIT_PURCHASE_COST';
